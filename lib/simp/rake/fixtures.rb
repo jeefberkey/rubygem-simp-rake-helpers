@@ -36,7 +36,7 @@ module Simp::Rake
           {'fixtures'=> {'symlinks'=> _s }}
         end
 
-        desc 'generate .fixtures.yml.local formm the entries in .fixtures.yml'
+        desc 'generate .fixtures.yml.local form the entries in .fixtures.yml'
         task :generate do
           pwd = File.expand_path(@base_dir)
           _f  = YAML.load_file(File.join(pwd,'.fixtures.yml'))
@@ -53,7 +53,7 @@ module Simp::Rake
           require 'yaml'
           pwd = File.expand_path(@base_dir)
           _f  = YAML.load_file(File.join(pwd,'.fixtures.yml'))
-          
+
           unless File.file?(File.join(pwd,'.fixtures.yml.local'))
             fail "ERROR: Can't diff fixtures without a `.fixtures.yml.local` file"
           end
