@@ -284,38 +284,53 @@ class Simp::Rake::Pupmod::Helpers < ::Rake::TaskLib
       end
     end
 
-    # Rake::Task[:spec_prep].abandon
+    # desc <<-EOM
+    # Checkout repos from simp-metadata (https://github.com/simp/simp-metadata/).
+    # Specify a release as an argument to checkout modules from a specific version of SIMP.
+    # EOM
+    # task :spec_prep_metadata, [:release] do |t, args|
+    #   require 'simp/metadata'
+    #   require 'yaml'
+    #
+    #   release = args[:release].nil? ? 'master' : args[:release]
+    #
+    #   metadata = Simp::Metadata::Engine.new
+    #   modules_in_fixures = YAML.load_file(File.join(pwd,'.fixtures.yml'))['fixtures']['repositories']
+    #   simp_modules = metadata.list_components_with_data(release)['/src/puppet/modules']
+    #   mods_to_clone = simp_modules.select do |mod,data|
+    #     modules_in_fixures.keys.include? mod.split('-')[1]
+    #   end
+    #
+    #   FileUtils::mkdir_p("spec/fixtures/modules")
+    #
+    #   mods_to_clone.each do |mod,data|
+    #     source   = data['source']['primary_source']
+    #     mod_name = mod.split('-')[1]
+    #     url      = "#{data['type']}://#{source['host']}/#{source['path']}"
+    #     puts "Cloning #{mod_name} into spec/fixtures/modules/#{mod_name} ..."
+    #     `git clone #{url} spec/fixtures/modules/#{mod_name} --no-checkout`
+    #     Dir.chdir("spec/fixtures/modules/#{mod_name}") do |path|
+    #       puts "Checking out ref #{data['ref']} ..."
+    #       `git reset --hard #{data['ref']}`
+    #     end
+    #   end
+    #
+    # end
 
     desc <<-EOM
-    Checkout repos from simp-metadata (https://github.com/simp/simp-metadata/).
+    Modify the fixtures file to specify versions from a SIMP release, using
+    simp-metadata (https://github.com/simp/simp-metadata/).
     Specify a release as an argument to checkout modules from a specific version of SIMP.
     EOM
-    task :spec_prep_metadata, [:release] do |t, args|
+    task :munge_fixtures, [:release] do |t,args|
       require 'simp/metadata'
       require 'yaml'
 
-      release = args[:release].nil? ? 'master' : args[:release]
+      fixtures_hash = YAML.load_file(File.join(pwd,'.fixtures.yml'))
 
-      metadata = Simp::Metadata::Engine.new
-      modules_in_fixures = YAML.load_file(File.join(pwd,'.fixtures.yml'))['fixtures']['repositories']
-      simp_modules = metadata.list_components_with_data(release)['/src/puppet/modules']
-      mods_to_clone = simp_modules.select do |mod,data|
-        modules_in_fixures.keys.include? mod.split('-')[1]
-      end
-
-      FileUtils::mkdir_p("spec/fixtures/modules")
-
-      mods_to_clone.each do |mod,data|
-        source   = data['source']['primary_source']
-        mod_name = mod.split('-')[1]
-        url      = "#{data['type']}://#{source['host']}/#{source['path']}"
-        puts "Cloning #{mod_name} into spec/fixtures/modules/#{mod_name} ..."
-        `git clone #{url} spec/fixtures/modules/#{mod_name} --no-checkout`
-        Dir.chdir("spec/fixtures/modules/#{mod_name}") do |path|
-          puts "Checking out ref #{data['ref']} ..."
-          `git reset --hard #{data['ref']}`
-        end
-      end
+      repos = fixtures_hash['fixtures']['repositories']
+      require 'pry';binding.pry
+      # repos.each do |mod
 
     end
 
