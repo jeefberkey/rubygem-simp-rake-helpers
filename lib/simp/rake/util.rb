@@ -57,7 +57,7 @@ module Simp::Rake
     def define
       namespace :util do
         desc 'Run puppet strings, and print all class params in their namespace'
-        task :get_params do
+        task :list_fully_qualified_params do
           get_params
         end
 
