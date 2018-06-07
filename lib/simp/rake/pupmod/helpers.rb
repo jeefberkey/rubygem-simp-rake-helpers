@@ -84,6 +84,7 @@ class Simp::Rake::Pupmod::Helpers < ::Rake::TaskLib
     Simp::Rake::Gitlab_ci.new
 
     Simp::Rake::Util.new
+    task :validate => ['util:validate_json', 'util:validate_yaml']
 
     Simp::Rake::Pkg.new( @base_dir ) do | t |
       t.clean_list << "#{t.base_dir}/spec/fixtures/hieradata/hiera.yaml"

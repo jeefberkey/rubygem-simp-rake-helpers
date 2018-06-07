@@ -70,7 +70,6 @@ module Simp::Rake
         task :validate_yaml do
           validate_yaml
         end
-
       end
     end
   end
