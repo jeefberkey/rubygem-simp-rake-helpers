@@ -2,12 +2,13 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'yaml'
+require 'rake/tasklib'
 
 module Simp; end
 module Simp::Rake
-  class Gitlab_ci < ::Rake::TaskLib
-    def initialize(dir)
-       define
+  class Simp::Rake::Gitlab_ci < ::Rake::TaskLib
+    def initialize
+      define
     end
 
     def gitlab_ci_lint
