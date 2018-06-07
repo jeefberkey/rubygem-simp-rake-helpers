@@ -2,11 +2,12 @@ require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet/version'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'puppet-lint/tasks/puppet-lint'
+require 'parallel_tests/cli'
 require 'simp/rake/pkg'
 require 'simp/rake/beaker'
-require 'parallel_tests/cli'
 require 'simp/rake/fixtures'
 require 'simp/rake/gitlab_ci'
+require 'simp/rake/util'
 
 if Puppet.version.to_f >= 4.9
     require 'semantic_puppet'
@@ -81,6 +82,8 @@ class Simp::Rake::Pupmod::Helpers < ::Rake::TaskLib
     Simp::Rake::Fixtures.new( @base_dir )
 
     Simp::Rake::Gitlab_ci.new
+
+    Simp::Rake::Util.new
 
     Simp::Rake::Pkg.new( @base_dir ) do | t |
       t.clean_list << "#{t.base_dir}/spec/fixtures/hieradata/hiera.yaml"
