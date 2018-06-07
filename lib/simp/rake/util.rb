@@ -20,7 +20,7 @@ module Simp::Rake
         end
       end
 
-      puts params.flatten.compact.join("\n")
+      puts params.flatten.compact.to_yaml
     end
 
     def validate_json
