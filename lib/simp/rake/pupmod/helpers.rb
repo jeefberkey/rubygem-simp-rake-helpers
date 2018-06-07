@@ -78,6 +78,8 @@ class Simp::Rake::Pupmod::Helpers < ::Rake::TaskLib
     end
 
     Simp::Rake::Fixtures.new( @base_dir )
+    
+    Simp::Rake::Gitlab_ci.new
 
     Simp::Rake::Pkg.new( @base_dir ) do | t |
       t.clean_list << "#{t.base_dir}/spec/fixtures/hieradata/hiera.yaml"
