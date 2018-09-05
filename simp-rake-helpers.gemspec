@@ -37,8 +37,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'r10k',                      '~> 2.2'
   s.add_runtime_dependency 'pager'
   s.add_runtime_dependency 'rspec',                     '~> 3.0'
-  s.add_runtime_dependency 'beaker',                    '~> 3.14'
-  s.add_runtime_dependency 'beaker-rspec',              '~> 6.1'
   s.add_runtime_dependency 'rspec-core',                '~> 3.0'
 
   # for development
