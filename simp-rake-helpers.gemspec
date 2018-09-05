@@ -16,26 +16,24 @@ Gem::Specification.new do |s|
     "Chris Tessmer",
     "Trevor Vaughan"
   ]
-  s.metadata = {
-                 'issue_tracker' => 'https://simp-project.atlassian.net'
-               }
+  s.metadata = { 'issue_tracker' => 'https://simp-project.atlassian.net' }
   # gem dependencies
   #   for the published gem
   # ensure the gem is built out of versioned files
 
-  s.add_runtime_dependency 'bundler',                   '~> 1.14'
+#  s.add_runtime_dependency 'bundler',                   '~> 1.14'
   s.add_runtime_dependency 'rake',                      '>= 10.0', '< 13.0'
-  s.add_runtime_dependency 'coderay',                   '~> 1.0'
+#  s.add_runtime_dependency 'coderay',                   '~> 1.0'
   s.add_runtime_dependency 'puppet',                    '>= 3.0', '< 6.0'
   s.add_runtime_dependency 'puppet-lint',               '>= 1.0', '< 3.0'
-  s.add_runtime_dependency 'puppetlabs_spec_helper',    '~> 2.0'
+#  s.add_runtime_dependency 'puppetlabs_spec_helper',    '~> 2.0'
   s.add_runtime_dependency 'parallel',                  '~> 1.0'
   s.add_runtime_dependency 'simp-rspec-puppet-facts',   '~> 2.0'
   s.add_runtime_dependency 'puppet-blacksmith',         '~> 3.3'
-  s.add_runtime_dependency 'simp-beaker-helpers',       '~> 1.0'
+#  s.add_runtime_dependency 'simp-beaker-helpers',       '~> 1.0'
   s.add_runtime_dependency 'parallel_tests',            '~> 2.4'
   s.add_runtime_dependency 'r10k',                      '~> 2.2'
-  s.add_runtime_dependency 'pager'
+#  s.add_runtime_dependency 'pager'
   s.add_runtime_dependency 'rspec',                     '~> 3.0'
   s.add_runtime_dependency 'rspec-core',                '~> 3.0'
 

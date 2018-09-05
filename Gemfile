@@ -14,7 +14,10 @@ gem 'simp-build-helpers'
 gem 'simp-beaker-helpers'
 gem 'beaker-puppet_install_helper'
 
+gem 'mocha'
+gem 'puppetlabs_spec_helper'
+gem 'pager'
+
 if puppetversion
   gem 'puppet', puppetversion
 end
-
